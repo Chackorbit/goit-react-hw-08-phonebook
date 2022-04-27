@@ -1,19 +1,22 @@
 import React from 'react';
 import { useState } from 'react';
 import s from './ContactForma.module.css';
-import { useSelector } from 'react-redux';
-import { useCreateContactMutation } from 'redux/fetchContacts';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from '../../redux/contacts/contacts-slice';
+import { contactsOperations } from 'redux/contacts';
+// import { useCreateContactMutation } from 'redux/fetchContacts';
 
 const ContactForma = () => {
   const [name, setUserName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
 
   const allContacts = useSelector(state => {
-    const data = state.contacts.queries['getAllContacts(undefined)'];
-    return data?.data;
+    // const data = state?.contacts?.queries['getAllContacts(undefined)'];
+    // return data?.data;
   });
 
-  const [addNewContact] = useCreateContactMutation();
+  //   const [addNewContact] = useCreateContactMutation();
 
   const addName = e => {
     const { name, value } = e.currentTarget;
@@ -26,10 +29,10 @@ const ContactForma = () => {
 
   const submitBtn = (name, number) => {
     const normalizedName = name.toLowerCase();
-    const checkedForName = allContacts.find(
+    const checkedForName = allContacts?.find(
       contact => normalizedName === contact.name.toLocaleLowerCase()
     );
-    const checkedForNumber = allContacts.find(
+    const checkedForNumber = allContacts?.find(
       contact => number === contact.number
     );
 
@@ -53,8 +56,7 @@ const ContactForma = () => {
     }
 
     console.log(newContact);
-
-    addNewContact(newContact);
+    dispatch(contactsOperations.addContacts(newContact));
   };
 
   const onSubmit = e => {

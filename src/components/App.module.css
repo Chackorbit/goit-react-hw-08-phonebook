@@ -1,8 +1,10 @@
 .section {
-  background-color: rgb(148, 210, 212);
+  /* background-color: rgb(148, 210, 212); */
 }
 
 .title {
+  display: flex;
+  justify-content: center;
   font-size: 24px;
   font-weight: 700;
   text-align: center;

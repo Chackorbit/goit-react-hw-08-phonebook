@@ -1,18 +1,42 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from './contactsSlice';
-import { testGetContacts } from './fetchContacts';
-import { setupListeners } from '@reduxjs/toolkit/query';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import { authReducer } from './auth';
+import { contactsReducer } from './contacts';
+import { filterReducer } from './filter';
+
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
 // Создание стора
-export const store = configureStore({
-  reducer: rootReducer,
 
-  // Добавление промежуточного программного обеспечения API включает кэширование
-  // и другие полезные функции `rtk-query`.
-  middleware: getDefaultMiddleware => [
-    ...getDefaultMiddleware(),
-    testGetContacts.middleware,
-  ],
+export const store = configureStore({
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    contacts: contactsReducer,
+    filter: filterReducer,
+  },
+  middleware,
 });
 
-setupListeners(store.dispatch);
+export const persistor = persistStore(store);

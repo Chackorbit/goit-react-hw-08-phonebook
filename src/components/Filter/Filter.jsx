@@ -1,12 +1,11 @@
 import s from './Filter.module.css';
 import React from 'react';
 import { nanoid } from 'nanoid';
-import { filter } from 'redux/contactsSlice';
+import { filterOperations } from 'redux/filter';
 import { useDispatch } from 'react-redux';
 
 export default function Filter() {
   const idFilter = nanoid();
-
   const dispatch = useDispatch();
 
   return (
@@ -19,8 +18,8 @@ export default function Filter() {
         className={s.input}
         type="text"
         name="filter"
-        value={filter.payload}
-        onChange={e => dispatch(filter(e.currentTarget.value))}
+        value={filterOperations.filter.payload}
+        onChange={e => dispatch(filterOperations.filter(e.currentTarget.value))}
         id={idFilter}
       />
     </div>
