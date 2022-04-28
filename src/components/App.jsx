@@ -6,7 +6,7 @@ import HomeView from 'views/HomeView';
 import RegisterView from 'views/RegisterView';
 import UserContacts from './UserContacts';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect } from 'react';
 import { authOperations, authSelectors } from 'redux/auth';
 
 import PrivateRoute from './UserMenu/PrivateRoute';
@@ -20,7 +20,6 @@ import PublicRoute from './UserMenu/PublicRoute';
 export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-  console.log('~ isFetchingCurrentUser', isFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());

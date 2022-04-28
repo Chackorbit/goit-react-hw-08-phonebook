@@ -2,9 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import s from './ContactForma.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from '../../redux/contacts/contacts-slice';
 import { contactsOperations } from 'redux/contacts';
-// import { useCreateContactMutation } from 'redux/fetchContacts';
 
 const ContactForma = () => {
   const [name, setUserName] = useState('');
