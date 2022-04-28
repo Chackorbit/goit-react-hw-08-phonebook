@@ -5,9 +5,9 @@ import LoginView from 'views/LoginView';
 import HomeView from 'views/HomeView';
 import RegisterView from 'views/RegisterView';
 import UserContacts from './UserContacts';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, lazy, Suspense } from 'react';
-import { authOperations } from 'redux/auth';
+import { authOperations, authSelectors } from 'redux/auth';
 
 import PrivateRoute from './UserMenu/PrivateRoute';
 import PublicRoute from './UserMenu/PublicRoute';
@@ -19,6 +19,8 @@ import PublicRoute from './UserMenu/PublicRoute';
 
 export default function App() {
   const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+  console.log('~ isFetchingCurrentUser', isFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -27,55 +29,45 @@ export default function App() {
   return (
     <div className={s.section}>
       <AppBar />
+      {!isFetchingCurrentUser && (
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <PublicRoute>
+                <HomeView />
+              </PublicRoute>
+            }
+          />
 
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <PublicRoute>
-              <HomeView />
-            </PublicRoute>
-          }
-        />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute restricted>
+                <RegisterView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute restricted>
+                <LoginView />
+              </PublicRoute>
+            }
+          />
 
-        <Route
-          path="/register"
-          element={
-            <PublicRoute restricted>
-              <RegisterView />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute restricted>
-              <LoginView />
-            </PublicRoute>
-          }
-        />
-
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute>
-              <UserContacts />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-
-      {/* <PrivateRoute path="/contacts">
-        <UserContacts />
-      </PrivateRoute> */}
-
-      {/* <p className={s.title}>Phonebook</p>
-      <ContactForma />
-
-      <p className={s.title}>Contacts</p>
-      <Filter />
-      <ContactList /> */}
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <UserContacts />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      )}
     </div>
   );
 }

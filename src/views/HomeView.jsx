@@ -1,7 +1,15 @@
 export default function HomeView() {
   return (
     <>
-      <h1>Здесь будет домашняя страница приложения</h1>
+      <h1
+        style={{
+          width: '1200px',
+          marginRight: 'auto',
+          marginLeft: 'auto',
+        }}
+      >
+        Это начальная страница приложения
+      </h1>
     </>
   );
 }

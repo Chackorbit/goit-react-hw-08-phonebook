@@ -6,7 +6,7 @@ const contactsSlice = createSlice({
   initialState: [],
   extraReducers: {
     [contactsOperations.getContacts.fulfilled](state, action) {
-      state.push(...action.payload);
+      return (state = action.payload);
     },
     [contactsOperations.addContacts.fulfilled](state, action) {
       state.push(action.payload);

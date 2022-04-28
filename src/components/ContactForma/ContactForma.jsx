@@ -11,12 +11,7 @@ const ContactForma = () => {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
-  const allContacts = useSelector(state => {
-    // const data = state?.contacts?.queries['getAllContacts(undefined)'];
-    // return data?.data;
-  });
-
-  //   const [addNewContact] = useCreateContactMutation();
+  const allContacts = useSelector(state => state.contacts);
 
   const addName = e => {
     const { name, value } = e.currentTarget;
@@ -29,7 +24,7 @@ const ContactForma = () => {
 
   const submitBtn = (name, number) => {
     const normalizedName = name.toLowerCase();
-    const checkedForName = allContacts?.find(
+    const checkedForName = allContacts.find(
       contact => normalizedName === contact.name.toLocaleLowerCase()
     );
     const checkedForNumber = allContacts?.find(
