@@ -22,7 +22,7 @@ const Navigation = () => {
   return (
     <nav>
       <NavLink
-        to="/"
+        to="/goit-react-hw-08-phonebook"
         exact="true"
         style={styles.link}
         activestyle={styles.activeLink}

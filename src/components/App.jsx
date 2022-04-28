@@ -33,7 +33,7 @@ export default function App() {
         <Routes>
           <Route
             exact
-            path="/"
+            path="/goit-react-hw-08-phonebook"
             element={
               <PublicRoute>
                 <HomeView />
