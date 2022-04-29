@@ -18,16 +18,16 @@ export default function AuthNav() {
   return (
     <div>
       <NavLink
-        to="register"
-        exact="true"
+        to="/register"
+   
         style={styles.link}
         activestyle={styles.activeLink}
       >
         Регистрация
       </NavLink>
       <NavLink
-        to="login"
-        exact="true"
+        to="/login"
+     
         style={styles.link}
         activestyle={styles.activeLink}
       >

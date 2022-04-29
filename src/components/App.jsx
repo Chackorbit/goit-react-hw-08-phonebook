@@ -34,13 +34,13 @@ export default function App() {
           <Routes>
             <Route
               exact
-              path="/*"
+              path="/"
               element={
                 <PublicRoute>
                   <HomeView />
                 </PublicRoute>
               }
-            ></Route>{' '}
+            />
             <Route
               path="/contacts"
               element={
