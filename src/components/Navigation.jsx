@@ -22,7 +22,7 @@ const Navigation = () => {
   return (
     <nav>
       <NavLink
-        to="/goit-react-hw-08-phonebook"
+        to="/"
         exact="true"
         style={styles.link}
         activestyle={styles.activeLink}
@@ -32,7 +32,7 @@ const Navigation = () => {
 
       {isLoggedIn && (
         <NavLink
-          to="/contacts"
+          to="contacts"
           exact="true"
           style={styles.link}
           activestyle={styles.activeLink}

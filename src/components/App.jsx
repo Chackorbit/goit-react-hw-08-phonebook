@@ -32,14 +32,23 @@ export default function App() {
         <Routes>
           <Route
             exact
-            path="/goit-react-hw-08-phonebook"
+            path="/"
             element={
               <PublicRoute>
                 <HomeView />
               </PublicRoute>
             }
+          >
+            {' '}
+          </Route>{' '}
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <UserContacts />
+              </PrivateRoute>
+            }
           />
-
           <Route
             path="/register"
             element={
@@ -54,15 +63,6 @@ export default function App() {
               <PublicRoute restricted>
                 <LoginView />
               </PublicRoute>
-            }
-          />
-
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute>
-                <UserContacts />
-              </PrivateRoute>
             }
           />
         </Routes>
