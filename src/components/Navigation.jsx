@@ -21,13 +21,19 @@ const Navigation = () => {
 
   return (
     <nav>
-      <NavLink to="/" style={styles.link} activestyle={styles.activeLink}>
+      <NavLink
+        to="/"
+        exact="true"
+        style={styles.link}
+        activestyle={styles.activeLink}
+      >
         Главная
       </NavLink>
 
       {isLoggedIn && (
         <NavLink
           to="/contacts"
+          exact="true"
           style={styles.link}
           activestyle={styles.activeLink}
         >
