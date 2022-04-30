@@ -6,6 +6,7 @@ export default function HomeView() {
           width: '1200px',
           marginRight: 'auto',
           marginLeft: 'auto',
+          textAlign: 'center',
         }}
       >
         Это начальная страница приложения
