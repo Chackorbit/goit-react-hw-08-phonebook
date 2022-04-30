@@ -13,12 +13,13 @@ const token = {
 };
 
 const register = createAsyncThunk('auth/signup', async credentials => {
-  console.log('~ credentials', credentials);
   try {
     const { data } = await axios.post('/users/signup', credentials);
     token.set(data.token);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    return alert('Попробуйте ввести другой Email');
+  }
 });
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
