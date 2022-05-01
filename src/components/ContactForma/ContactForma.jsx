@@ -21,7 +21,7 @@ const ContactForma = () => {
   };
 
   const submitBtn = (name, number) => {
-    const normalizedName = name.toLowerCase();
+    const normalizedName = name.toLowerCase().trim();
     const checkedForName = allContacts.find(
       contact => normalizedName === contact.name.toLocaleLowerCase()
     );
@@ -45,6 +45,10 @@ const ContactForma = () => {
 
     if (!name || !number) {
       alert('Invalid name or number value!');
+      return;
+    }
+    if (name.trim().length < 1 || number.trim().length < 1) {
+      alert('Пробелы не работают! Введите имя или номер корректно');
       return;
     }
 
@@ -82,7 +86,7 @@ const ContactForma = () => {
           value={number}
           type="tel"
           name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          pattern="[\+]\d{3}\s[\(]\d{2}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
