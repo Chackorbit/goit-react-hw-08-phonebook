@@ -21,16 +21,7 @@ const Navigation = () => {
 
   return (
     <nav>
-      <NavLink
-        to="/"
-        exact="true"
-        style={styles.link}
-        activestyle={styles.activeLink}
-      >
-        Главная
-      </NavLink>
-
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <NavLink
           to="/contacts"
           exact="true"
@@ -38,6 +29,15 @@ const Navigation = () => {
           activestyle={styles.activeLink}
         >
           Мои контакты
+        </NavLink>
+      ) : (
+        <NavLink
+          to="/"
+          exact="true"
+          style={styles.link}
+          activestyle={styles.activeLink}
+        >
+          Главная
         </NavLink>
       )}
     </nav>

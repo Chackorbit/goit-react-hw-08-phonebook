@@ -18,8 +18,6 @@ const styles = {
 export default function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUsername);
-  console.log('~ name', name);
-  // const avatar = defaultAvatar;
 
   return (
     <div style={styles.container}>
