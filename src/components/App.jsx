@@ -38,8 +38,6 @@ export default function App() {
           <AppBar />
           <Suspense fallback={<h1>LOADING...</h1>}>
             <Routes>
-              <Route path="*" element={<NotFound />} />
-
               <Route
                 exact
                 path="/"
@@ -73,6 +71,8 @@ export default function App() {
                   </PublicRoute>
                 }
               />
+
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </>
